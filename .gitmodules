@@ -42,10 +42,6 @@
 	path = bundle/rope
 	url = https://github.com/sontek/rope-vim.git
     ignore = dirty
-[submodule "bundle/taglist"]
-	path = bundle/taglist
-	url = https://github.com/vim-scripts/taglist.vim.git
-    ignore = dirty
 [submodule "bundle/delimitmate"]
 	path = bundle/delimitmate
 	url = https://github.com/vim-scripts/delimitMate.vim.git
@@ -110,10 +106,6 @@
 	path = bundle/indentobject
 	url = https://github.com/austintaylor/vim-indentobject.git
     ignore = dirty
-[submodule "bundle/vimux"]
-	path = bundle/vimux
-	url = https://github.com/benmills/vimux.git
-    ignore = dirty
 [submodule "bundle/webapi"]
 	path = bundle/webapi
 	url = https://github.com/mattn/webapi-vim.git
@@ -177,10 +169,6 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-    ignore = dirty
-[submodule "bundle/jedi"]
-	path = bundle/jedi
-	url = https://github.com/davidhalter/jedi-vim.git
     ignore = dirty
 [submodule "bundle/python-textobj"]
 	path = bundle/python-textobj
