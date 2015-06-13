@@ -1,3 +1,6 @@
+" Quick map for adding a new item to a list at the same level
+imap <buffer>  <CR>*<Space>
+
 function! s:opensearchfolds(e)
     exec "normal! mqggzM:g/". a:e . "/normal! zv\<CR>`q"
 endfunction

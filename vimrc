@@ -338,7 +338,7 @@ nmap <C-a> <Nop>
 nmap <C-x> <Nop>
 
 " Turn off highlighting
-nmap <leader>h <Esc>:noh<CR>
+nmap ,h <Esc>:noh<CR>
 
 " Paste without auto indent
 nnoremap <F2> :set invpaste paste?<CR>
@@ -688,6 +688,11 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
 
 " }}}
+" tmuxline {{{
+
+let g:tmuxline_powerline_separators = 0
+
+" }}}
 " ultisnips {{{
 
 let g:UltiSnipsUsePythonVersion = 2
@@ -701,14 +706,14 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
 let g:unite_source_history_yank_enable = 1
 let g:unite_prompt = '➜ '
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#filters#sorter_default#use(['sorter_ftime', 'sorter_reverse'])
 call unite#custom#profile('default', 'context', {
             \   'start_insert': 1,
             \   'winheight': 10,
-            \   'autoresize': 1,
-            \   'marked_icon': '✓',
             \ })
-
+            " \   'marked_icon': '✓',
+            " \   'autoresize': 1,
 if executable('ag-grep')
   let g:unite_source_grep_command = 'ag-grep'
   let g:unite_source_grep_default_opts = '-i --noheading --nocolor'
@@ -729,19 +734,17 @@ nnoremap <leader>hs :<C-u>Unite help<CR>
 nnoremap <leader>pt :<C-u>Unite tag<CR>
 nnoremap <leader>ft :<C-u>Unite tag/file<CR>
 nnoremap <leader>pb :<C-u>Unite bookmark<CR>
-nnoremap <leader>fo :<C-u>Unite -auto-preview -vertical -no-quit outline<CR>
+nnoremap <leader>fo :<C-u>Unite -vertical outline<CR>
 nnoremap <leader>cs :<C-u>Unite colorscheme<CR>
 nnoremap <leader>hy :<C-u>Unite history/yank<cr>
-nnoremap <leader>sp :<C-u>UniteWithProjectDir -auto-preview -no-quit grep:.<cr>
+nnoremap <leader>sp :<C-u>UniteWithProjectDir -auto-preview grep:.<cr>
 nnoremap <leader>ss :<C-u>Unite -auto-preview ultisnips<cr>
 nnoremap <leader>pc :<C-u>UniteClose<CR>
 nnoremap <leader>:  :<C-u>Unite command<CR>
 
 " The folling is from 'kmnk/vimrc-builder'
-nnoremap <silent> <SID>(search)      :<C-u>Unite -buffer-name=search -prompt=search> -auto-preview -vertical -direction=topleft -no-quit line<CR>
-nnoremap <silent> <SID>(star-search) :<C-u>UniteWithCursorWord -buffer-name=search -prompt=search> -auto-preview -vertical -direction=topleft -no-start-insert -no-quit line<CR>
-nnoremap <leader> / <SID>(search)
-nnoremap <leader> * <SID>(star-search)
+nnoremap <leader>/ :<C-u>Unite -buffer-name=search -prompt=search> -auto-preview -vertical -direction=topleft line<CR>
+nnoremap <leader>* :<C-u>UniteWithCursorWord -buffer-name=search -prompt=search> -auto-preview -vertical -direction=topleft -no-start-insert line<CR>
 
 " Function that only triggers when unite opens
 autocmd FileType unite call s:unite_settings()
@@ -768,6 +771,9 @@ function! s:unite_settings()
   nnoremap <silent><buffer><expr> <C-s> unite#do_action('split')
   inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   nnoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+
+  " cd to current dir
+  nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
 
 endfunction
 
