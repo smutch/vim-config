@@ -687,10 +687,6 @@ let Tlist_Display_Prototype = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
 
-" Mappings
-nnoremap <leader>t :TlistToggle<CR>
-
-
 " }}}
 " ultisnips {{{
 
@@ -723,13 +719,19 @@ nnoremap <leader>hs :<C-u>Unite help<CR>
 nnoremap <leader>pt :<C-u>Unite tag<CR>
 nnoremap <leader>ft :<C-u>Unite tag/file<CR>
 nnoremap <leader>pb :<C-u>Unite bookmark<CR>
-nnoremap <leader>fo :<C-u>Unite outline<CR>
-nnoremap <leader>sc :<C-u>Unite colorscheme<CR>
+nnoremap <leader>fo :<C-u>Unite -auto-preview -vertical -no-quit outline<CR>
+nnoremap <leader>cs :<C-u>Unite colorscheme<CR>
 nnoremap <leader>hy :<C-u>Unite history/yank<cr>
-nnoremap <leader>sp :<C-u>UniteWithProjectDir grep:.<cr>
-nnoremap <leader>sf :<C-u>Unite vimgrep:%<cr>
+nnoremap <leader>sp :<C-u>UniteWithProjectDir -auto-preview -no-quit grep:.<cr>
+nnoremap <leader>ss :<C-u>Unite -auto-preview ultisnips<cr>
 nnoremap <leader>pc :<C-u>UniteClose<CR>
 nnoremap <leader>:  :<C-u>Unite command<CR>
+
+" The folling is from 'kmnk/vimrc-builder'
+nnoremap <silent> <SID>(search)      :<C-u>Unite -buffer-name=search -prompt=search> -auto-preview -vertical -direction=topleft -no-quit line<CR>
+nnoremap <silent> <SID>(star-search) :<C-u>UniteWithCursorWord -buffer-name=search -prompt=search> -auto-preview -vertical -direction=topleft -no-start-insert -no-quit line<CR>
+nnoremap <leader> / <SID>(search)
+nnoremap <leader> * <SID>(star-search)
 
 " Function that only triggers when unite opens
 autocmd MyAutoCmd FileType unite call s:unite_settings()
