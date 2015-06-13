@@ -709,6 +709,16 @@ call unite#custom#profile('default', 'context', {
             \   'marked_icon': '✓',
             \ })
 
+if executable('ag-grep')
+  let g:unite_source_grep_command = 'ag-grep'
+  let g:unite_source_grep_default_opts = '-i --noheading --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
 nnoremap <leader>pf :<C-u>UniteWithProjectDir file_rec/async<CR>
 nnoremap <leader>pd :<C-u>UniteWithProjectDir directory/async<CR>
 nnoremap <leader>ff :<C-u>Unite file_rec/async<CR>
@@ -734,7 +744,7 @@ nnoremap <leader> / <SID>(search)
 nnoremap <leader> * <SID>(star-search)
 
 " Function that only triggers when unite opens
-autocmd MyAutoCmd FileType unite call s:unite_settings()
+autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
 
   " exit with esc
