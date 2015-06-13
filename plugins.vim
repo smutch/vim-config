@@ -83,6 +83,7 @@ Plug 'tsukkee/unite-help'
 Plug 'tsukkee/unite-tag'
 Plug 'Shougo/unite-outline'
 Plug 'ujihisa/unite-colorscheme'
+Plug 'Shougo/neomru.vim'
 
 " colorschemes
 Plug 'morhetz/gruvbox'

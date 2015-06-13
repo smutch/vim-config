@@ -703,16 +703,21 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
 " unite {{{
 
 let g:unite_source_history_yank_enable = 1
+let g:unite_prompt = '➜ '
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#profile('default', 'context', {
             \   'start_insert': 1,
             \   'winheight': 10,
+            \   'autoresize': 1,
+            \   'marked_icon': '✓',
             \ })
 
 nnoremap <leader>pf :<C-u>UniteWithProjectDir file_rec/async<CR>
 nnoremap <leader>pd :<C-u>UniteWithProjectDir directory/async<CR>
 nnoremap <leader>ff :<C-u>Unite file_rec/async<CR>
 nnoremap <leader>fd :<C-u>Unite directory_rec/async<CR>
+nnoremap <leader>fr :<C-u>Unite file_mru<CR>
 nnoremap <leader>bs :<C-u>Unite buffer<CR>
 nnoremap <leader>hs :<C-u>Unite help<CR>
 nnoremap <leader>pt :<C-u>Unite tag<CR>
@@ -724,7 +729,35 @@ nnoremap <leader>hy :<C-u>Unite history/yank<cr>
 nnoremap <leader>sp :<C-u>UniteWithProjectDir grep:.<cr>
 nnoremap <leader>sf :<C-u>Unite vimgrep:%<cr>
 nnoremap <leader>pc :<C-u>UniteClose<CR>
+nnoremap <leader>:  :<C-u>Unite command<CR>
 
+" Function that only triggers when unite opens
+autocmd MyAutoCmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+
+  " exit with esc
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <ESC> <Plug>(unite_exit)
+
+  " Ctrl jk mappings
+  nmap <buffer> <c-j> <Plug>(unite_loop_cursor_down)
+  nmap <buffer> <c-k> <Plug>(unite_loop_cursor_up)
+
+  " qq `` becuase you're lazy, and quit unite
+  imap <buffer> qq <Plug>(unite_exit)
+  imap <buffer> `` <Plug>(unite_exit)
+
+  " refresh unite
+  nmap <buffer> <C-r> <Plug>(unite_redraw)
+  imap <buffer> <C-r> <Plug>(unite_redraw)
+
+  " split control
+  inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
+  nnoremap <silent><buffer><expr> <C-s> unite#do_action('split')
+  inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  nnoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+
+endfunction
 
 " }}}
 " vim-ipython {{{
