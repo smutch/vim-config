@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/Align'
 Plug 'b4winckler/vim-angry'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/delimitMate.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'git@github.com:smutch/vim-gf-diff.git'
@@ -17,7 +16,7 @@ Plug 'sjl/gundo.vim', { 'on': 'Gundo' }
 Plug 'austintaylor/vim-indentobject'
 Plug 'scrooloose/nerdcommenter'
 " Plug 'fs111/pydoc.vim'
-Plug 'vim-scripts/python_match.vim'
+Plug 'vim-scripts/python_match.vim', { 'for': 'Python' }
 " Plug 'kien/rainbow_parentheses.vim'
 Plug 'vim-scripts/scons.vim'
 Plug 'mtth/scratch.vim', { 'on': 'Scratch' }
@@ -29,12 +28,12 @@ else
     Plug 'scrooloose/syntastic'
     Plug 'tpope/vim-dispatch'
 endif
-Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/taglist.vim', { 'on': 'Tlist' }
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 " Plug 'benmills/vimux'
 Plug 'SirVer/ultisnips'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'natw/vim-pythontextobj'
+Plug 'natw/vim-pythontextobj', { 'for': 'python' }
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-user'
 Plug 'Yggdroot/indentLine'
@@ -42,7 +41,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/vimproc'
 Plug 'ivanov/vim-ipython', { 'on': 'Ipython' }
 Plug 'tpope/vim-obsession', { 'on': 'Obsession' }
-Plug 'smutch/gfplaintasks.vim'
+" Plug 'smutch/gfplaintasks.vim'
 Plug 'tpope/vim-tbone'
 Plug 'git@github.com:smutch/vim-tmuxify.git'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -53,14 +52,14 @@ Plug 'tpope/vim-repeat'
 Plug 'rking/ag.vim'
 Plug 'goldfeld/vim-seek'
 Plug 'tpope/vim-vinegar'
-Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
 Plug 'bling/vim-airline'
 " Plug 'gcmt/wildfire.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'machakann/vim-textobj-delimited'
-Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim', { 'on': 'Tmuxline' }
 Plug 'kana/vim-textobj-fold'
 Plug 'haya14busa/incsearch.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
@@ -70,15 +69,20 @@ Plug 'talek/obvious-resize'
 Plug 'ajh17/VimCompletesMe'
 Plug 'sjl/clam.vim'
 Plug 'junegunn/vim-peekaboo'
-Plug 'd11wtq/ctrlp_bdelete.vim'
 Plug 'chrisbra/NrrwRgn'
-Plug 'fisadev/vim-ctrlp-cmdpalette'
 Plug 'milkypostman/vim-togglelist'
 Plug 'godlygeek/tabular'  " N.B. This must come BEFORE vim-markdown
 Plug 'plasticboy/vim-markdown'
 " Plug 'neilagabriel/vim-geeknote'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'lukaszkorecki/workflowish'
+
+" Unite
+Plug 'Shougo/unite.vim'
+Plug 'tsukkee/unite-help'
+Plug 'tsukkee/unite-tag'
+Plug 'Shougo/unite-outline'
+Plug 'ujihisa/unite-colorscheme'
 
 " colorschemes
 Plug 'morhetz/gruvbox'

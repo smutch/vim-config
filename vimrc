@@ -444,62 +444,6 @@ call airline#add_statusline_func('MyPlugin')
 nnoremap Q :Bdelete<CR>
 
 " }}}
-" ctrlp {{{
-
-" Include the bdelete plugin
-call ctrlp_bdelete#init()
-
-" Custom ignore paths
-let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|include|lib|bin)|(\.(swp|ico|git|svn))$'
-
-" Custom root markers
-let g:ctrlp_root_markers = ['.ctrlp_marker']
-
-" Default to filename searches - so that appctrl will find application
-" controller
-let g:ctrlp_by_filename = 1
-
-" We don't want to use Ctrl-p as the mapping because
-" it interferes with YankRing (paste, then hit ctrl-p)
-let g:ctrlp_map = '<leader>pp'
-let g:ctrlp_cmd = 'CtrlPMixed'
-
-" Additional mapping for buffer search
-nnoremap <silent> <leader>bs :CtrlPBuffer<CR>
-nnoremap <silent> <leader>pb :CtrlPBookmarkDir<CR>
-
-" Additional mappting for most recently used files
-nnoremap <silent> <leader>pf :CtrlP<CR>
-nnoremap <silent> <leader>fr :CtrlPMRU<CR>
-
-" Additional mapping for ctags search
-nnoremap <silent> <leader>pt :CtrlPTag<CR>
-
-"Cmd-(m)ethod - jump to a method (tag in current file)
-nnoremap <leader>pm :CtrlPBufTag<CR>
-
-"Ctrl-(M)ethod - jump to a method (tag in all files)
-nnoremap <leader>pM :CtrlPBufTagAll<CR>
-
-" quickfix
-nnoremap <leader>pq :CtrlPQuickfix<CR>
-
-" directories
-nnoremap <leader>pd :CtrlPDir<CR>
-
-" Search files in runtime path (vimrc etc.)
-nnoremap <leader>pv :CtrlPRTS<CR>
-
-" lines
-nnoremap <leader>pl :CtrlPLine<CR>
-
-" commands
-nnoremap <leader>: :CtrlPCmdPalette<CR>
-
-" Show the match window at the top of the screen
-let g:ctrlp_match_window_bottom = 0
-
-" }}}
 " dash {{{
 
 nmap <silent> <leader>d <Plug>DashSearch
@@ -754,6 +698,33 @@ let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger = '<C-k>'
 let g:UltiSnipsJumpForwardTrigger = '<C-k>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
+
+" }}}
+" unite {{{
+
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#profile('default', 'context', {
+            \   'start_insert': 1,
+            \   'winheight': 10,
+            \ })
+
+nnoremap <leader>pf :<C-u>UniteWithProjectDir file_rec/async<CR>
+nnoremap <leader>pd :<C-u>UniteWithProjectDir directory/async<CR>
+nnoremap <leader>ff :<C-u>Unite file_rec/async<CR>
+nnoremap <leader>fd :<C-u>Unite directory_rec/async<CR>
+nnoremap <leader>bs :<C-u>Unite buffer<CR>
+nnoremap <leader>hs :<C-u>Unite help<CR>
+nnoremap <leader>pt :<C-u>Unite tag<CR>
+nnoremap <leader>ft :<C-u>Unite tag/file<CR>
+nnoremap <leader>pb :<C-u>Unite bookmark<CR>
+nnoremap <leader>fo :<C-u>Unite outline<CR>
+nnoremap <leader>sc :<C-u>Unite colorscheme<CR>
+nnoremap <leader>hy :<C-u>Unite history/yank<cr>
+nnoremap <leader>sp :<C-u>UniteWithProjectDir grep:.<cr>
+nnoremap <leader>sf :<C-u>Unite vimgrep:%<cr>
+nnoremap <leader>pc :<C-u>UniteClose<CR>
+
 
 " }}}
 " vim-ipython {{{
